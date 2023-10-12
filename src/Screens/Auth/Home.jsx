@@ -1,8 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
-import { Text, TouchableOpacity, View, TextInput } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { useAuth } from '../../Context/Auth';
 
-export default function Login() {
+export default function Home() {
   const navigation = useNavigation();
   const { singIn } = useAuth();
 
@@ -31,40 +31,26 @@ export default function Login() {
       </View>
 
       <View className="w-full">
-        <TextInput
-          // onChangeText={setEmail}
-          // value={email}
-          placeholder='Email'
-          className="border-b w-full p-2 mb-4 rounded-lg font-bold"
-          placeholderTextColor="black"
-        />
-        <TextInput
-          // onChangeText={setEmail}
-          // value={email}
-          placeholder='Password'
-          className="border-b w-full p-2 rounded-lg font-bold"
-          placeholderTextColor="black"
-        />
-        <TouchableOpacity onPress={() => navigation.navigate("screenD")}>
-          <Text className="text-gray-400 text-right font-bold text-xs pt-3">
-            Forgot Password
-          </Text>
-        </TouchableOpacity>
+        <Text className="text-center text-2xl">A new way to define</Text>
+        <Text className="text-center font-bold text-2xl ">Goals</Text>
       </View>
 
-      <View className="w-1/2 justify-center" style={{ flex: 1 }}>
-        <TouchableOpacity 
-          className="flex items-center p-3 mt-4 bg-cinza-700 border rounded-lg"
-          onPress={handleSubmit}
-          >
-          <Text className="text-1xl text-white font-bold">Send</Text>
-        </TouchableOpacity>
-
+      <View className="w-full justify-center" style={{ flex: 1 }}>
         <TouchableOpacity 
           className="flex items-center p-3 mt-4 bg-white border rounded-lg"
           onPress={() => navigation.navigate("screenC")}>
           <Text className="text-1xl text-black font-bold">Sign Up</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity 
+          className="flex items-center p-3 mt-4 mb-9 bg-cinza-700 border rounded-lg"
+          onPress={() => navigation.navigate("screenB")}
+          >
+          <Text className="text-1xl text-white font-bold">Sign In</Text>
+        </TouchableOpacity>
+
+        <Text className="text-gray-400 text-center font-bold text-xs">By signing op, ypu agree to out terms of service</Text>
+        <Text className="text-gray-400 text-center font-bold text-xs">and Privacy Policy</Text>
       </View>
     </View>
   );

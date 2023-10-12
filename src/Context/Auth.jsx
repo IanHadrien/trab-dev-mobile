@@ -16,15 +16,18 @@ export const AuthProvider = ({ children }) => {
 
   const loadStoragedData = async () => {
     setLoading(true)
+    console.log('storageToken:');
     try {
       const storageToken = await AsyncStorage.getItem('@RNAuth:token');
       const storageName = await AsyncStorage.getItem('@RNAuth:name');
       // const storageEmail = await AsyncStorage.getItem('@RNAuth:email');
+      console.log('storageToken: ', storageToken);
 
-      if (storageToken) {
+      if (!!storageToken) {
         // api.defaults.headers['Authorization'] = `Bearer ${storageToken}`;
+        console.log('storageToken 2: ', storageToken);
 
-        setDataUser(objUser);
+        // setDataUser(objUser);
 
         setToken(storageToken);
         setName(storageName);
@@ -68,16 +71,12 @@ export const AuthProvider = ({ children }) => {
     };
   };
 
-  const teste = () => {
-    console.log('test')
-  }
-
   return (
     <AuthContext.Provider value={{
       signed: !!token,
       singIn,
-      // singOut,
-      // user: name,
+      singOut,
+      user: dataUser,
       // loading,
       // teste
     }}>
