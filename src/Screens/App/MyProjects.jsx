@@ -1,7 +1,9 @@
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useAuth } from '../../Context/Auth';
 import Icon from 'react-native-vector-icons/Feather';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import { useState } from 'react';
+import { ListProjects } from '../../Components/List/ListProjects';
 
 export default function MyProjects() {
   const { user, singOut } = useAuth();
@@ -19,10 +21,19 @@ export default function MyProjects() {
     console.log("Pesquisa");
   };
 
+  const hendleAddProject = async () => {
+    console.log("Adicionar");
+  };
+
   return (
     <View className="bg-white p-6 h-full">
       <View>
-        <Text className="text-gray-400 text-2xl font-bold pb-4">My project</Text>
+        <View className="flex-row justify-between pb-4">
+          <Text className="text-gray-400 text-2xl font-bold pb-4">My project</Text>
+          <TouchableOpacity onPress={hendleAddProject} className="flex-row justify-center items-center text-blue-700">
+            <AntDesign name="pluscircle" size={30} color='blue' />
+          </TouchableOpacity>
+        </View>
 
         <View style={styles.container} className="bg-gray-300">
           <TextInput
@@ -43,6 +54,8 @@ export default function MyProjects() {
         onPress={logout}>
         <Text className="text-1xl text-black">sair</Text>
       </TouchableOpacity>
+
+      <ListProjects />
     </View>
   );
 }
