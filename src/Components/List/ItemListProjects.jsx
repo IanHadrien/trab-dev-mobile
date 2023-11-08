@@ -1,10 +1,13 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { memo } from 'react';
 import {  Text, TouchableOpacity, View } from 'react-native';
 
 export const ItemListProjects =  memo(({ item }) => { 
+  const navigation = useNavigation();
+
   return (
     <View className="border-2 mt-6 p-2 rounded-md">
-      <TouchableOpacity onPress={() => console.log("navegar")}>
+      <TouchableOpacity onPress={() => navigation.navigate('Project')}>
         <View className="flex-row items-center justify-between pb-3">
           <Text className="p-1 rounded-lg bg-gray-400 text-white">
             in progress

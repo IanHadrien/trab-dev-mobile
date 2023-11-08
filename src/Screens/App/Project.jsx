@@ -2,18 +2,18 @@ import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 
 import { useState } from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-export default function NeyProject() {
+export default function Project() {
   const [name, setName] = useState('');
 
   return (
     <ScrollView className="bg-white h-full">
       <View className="p-6">
         <View className="flex-row justify-between pb-1">
-          <Text className="text-black text-2xl font-bold">New project</Text>
+          <Text className="text-black text-2xl font-bold">Project</Text>
         </View>
       </View>
 
-      <View className="rounded-t-3xl bg-gray-200 p-6">
+      <View className="rounded-xl border p-6 mx-5 mb-5">
         <Text className="pb-3 text-gray-500">Name</Text>
         <TextInput 
           className="bg-white border p-1 rounded-md"
