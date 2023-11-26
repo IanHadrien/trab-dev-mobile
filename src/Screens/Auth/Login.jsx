@@ -1,22 +1,24 @@
 import { useNavigation } from '@react-navigation/native';
 import { Text, TouchableOpacity, View, TextInput } from 'react-native';
 import { useAuth } from '../../Context/Auth';
+import { useState } from 'react';
+import api from '../../Services/api';
 
 export default function Login() {
-  const navigation = useNavigation();
   const { singIn } = useAuth();
+  const navigation = useNavigation();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = async () => {
     // const regTemp = {email, password};
     // setIsLoading(true)
-    const dadosTest =  {
-      token: '1234567890',
-      name: 'Ian Hadrien'
-    }
+    const regTemp = {email, password};
     try {
-      // const { data } = await api.post("/login", regTemp);
-      await singIn(dadosTest);
-      console.log('JSON.stringify(data)');
+
+      const { data } = await api.post("/login", regTemp);
+      console.log("Recebidos: ", data);
+      await singIn(data);
     } catch (error) {
       console.log(error);
       // setIsLoading(false)
@@ -32,15 +34,15 @@ export default function Login() {
 
       <View className="w-full">
         <TextInput
-          // onChangeText={setEmail}
-          // value={email}
+          onChangeText={setEmail}
+          value={email}
           placeholder='Email'
           className="border-b w-full p-2 mb-4 rounded-lg font-bold"
           placeholderTextColor="black"
         />
         <TextInput
-          // onChangeText={setEmail}
-          // value={email}
+          onChangeText={setPassword}
+          value={password}
           placeholder='Password'
           className="border-b w-full p-2 rounded-lg font-bold"
           placeholderTextColor="black"

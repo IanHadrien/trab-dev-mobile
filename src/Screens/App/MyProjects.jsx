@@ -2,20 +2,42 @@ import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-nativ
 import { useAuth } from '../../Context/Auth';
 import Icon from 'react-native-vector-icons/Feather';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ListProjects } from '../../Components/List/ListProjects';
 import { useNavigation } from '@react-navigation/native';
+import api from '../../Services/api';
 
 export default function MyProjects() {
   const navigation = useNavigation();
   const { user, singOut } = useAuth();
   const [search, setSearch] = useState('');
+  const [project, setProject] = useState('');
 
   const logout = async () => {
     try {
       await singOut();
     } catch (emailError) {
       console.log("error: ", e);
+    }
+  };
+
+  useEffect(() => {
+    console.log('Project');
+    loadRegisters();
+  }, []);
+
+  const loadRegisters = async () => {
+    // setLoading(true);
+    // setStatus("open");
+    try {
+      const { data } = await api.get("/project");
+      console.log("Projetos: ", data.data);
+      setProject(data.data);
+
+    } catch (e) {
+      console.log(e);
+    } finally {
+      // setLoading(false);
     }
   };
 
@@ -53,7 +75,7 @@ export default function MyProjects() {
         <Text className="text-1xl text-black">sair</Text>
       </TouchableOpacity>
 
-      <ListProjects />
+      <ListProjects project={project} />
     </View>
   );
 }

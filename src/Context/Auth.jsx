@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import api from "../Services/api";
 
 export const AuthContext = createContext({ siged: true });
 
@@ -19,18 +20,18 @@ export const AuthProvider = ({ children }) => {
     console.log('storageToken:');
     try {
       const storageToken = await AsyncStorage.getItem('@RNAuth:token');
-      const storageName = await AsyncStorage.getItem('@RNAuth:name');
+      // const storageName = await AsyncStorage.getItem('@RNAuth:name');
       // const storageEmail = await AsyncStorage.getItem('@RNAuth:email');
       console.log('storageToken: ', storageToken);
 
       if (!!storageToken) {
-        // api.defaults.headers['Authorization'] = `Bearer ${storageToken}`;
+        api.defaults.headers['Authorization'] = `Bearer ${storageToken}`;
         console.log('storageToken 2: ', storageToken);
 
         // setDataUser(objUser);
 
         setToken(storageToken);
-        setName(storageName);
+        // setName(storageName);
       }
     } catch (error) {
       // showToast(error, 'Erro ao carregar dados')
@@ -42,14 +43,15 @@ export const AuthProvider = ({ children }) => {
 
   const singIn = async (data) => {
     setLoading(true);
+    console.log("Data: ", data);
     try {
-      await AsyncStorage.setItem('@RNAuth:token', data.token);
-      await AsyncStorage.setItem('@RNAuth:name', data.name);
+      await AsyncStorage.setItem('@RNAuth:token', data.access_token);
+      // await AsyncStorage.setItem('@RNAuth:name', data.name);
       // await AsyncStorage.setItem('@RNAuth:email', data.email);
 
       setDataUser(data);
-      // api.defaults.headers['Authorization'] = `Bearer ${data.token}`;
-      setToken(data.token);
+      api.defaults.headers['Authorization'] = `Bearer ${data.access_token}`;
+      setToken(data.access_token);
     } catch (e) {
       console.log("erro: ", e);
     } finally {
@@ -76,7 +78,7 @@ export const AuthProvider = ({ children }) => {
       signed: !!token,
       singIn,
       singOut,
-      user: dataUser,
+      // user: dataUser,
       // loading,
       // teste
     }}>

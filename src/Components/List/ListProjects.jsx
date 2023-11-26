@@ -19,7 +19,7 @@ const DATA = [
   },
 ];
 
-export const ListProjects = memo(({ actives, status, loading, networkOf, onChildListActives }) => {
+export const ListProjects = memo(({ project }) => {
   const [list, setList] = useState([]);
   const [firstPage, setFirstPage] = useState("");
   const [nextPage, setNextPage] = useState("");
@@ -38,7 +38,7 @@ export const ListProjects = memo(({ actives, status, loading, networkOf, onChild
       {/* {refreshing ? <Loading /> : null}
       {list?.length > 0 ?  */}
         <FlatList
-          data={DATA}
+          data={project}
           contentContainerStyle={{paddingBottom: 20}}
           initialNumToRender={15}
           keyExtractor={keyExtrator}
