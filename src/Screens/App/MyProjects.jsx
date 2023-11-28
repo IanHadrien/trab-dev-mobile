@@ -50,9 +50,14 @@ export default function MyProjects() {
       <View>
         <View className="flex-row justify-between pb-4">
           <Text className="text-gray-400 text-2xl font-bold pb-4">My project</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('New-Project')} className="flex-row justify-center items-center text-blue-700">
-            <AntDesign name="pluscircle" size={30} color='blue' />
-          </TouchableOpacity>
+          <View className="flex-row gap-3">
+            <TouchableOpacity onPress={() => navigation.navigate('New-Project')} className="flex-row justify-center items-center text-blue-700">
+              <AntDesign name="pluscircle" size={30} color='blue' />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={logout} className="flex-row justify-center items-center text-white">
+              <AntDesign name="logout" size={30} color='red' />
+            </TouchableOpacity>
+          </View>
         </View>
 
         <View style={styles.container} className="bg-gray-300">
@@ -68,12 +73,6 @@ export default function MyProjects() {
           </TouchableOpacity>
         </View>
       </View>
-
-      <TouchableOpacity 
-        className="flex items-center p-3 mt-4 bg-blue-700 border border-transparent rounded-lg"
-        onPress={logout}>
-        <Text className="text-1xl text-black">sair</Text>
-      </TouchableOpacity>
 
       <ListProjects project={project} />
     </View>

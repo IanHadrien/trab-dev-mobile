@@ -1,15 +1,14 @@
 import { useNavigation } from '@react-navigation/native';
 import moment from 'moment/moment';
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import {  Text, TouchableOpacity, View } from 'react-native';
 
 export const ItemListProjects =  memo(({ item }) => { 
   const navigation = useNavigation();
-  console.log("Item: ", item);
 
   return (
     <View className="border-2 mt-6 p-2 rounded-md">
-      <TouchableOpacity onPress={() => navigation.navigate('Project')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Project', { id: item.id })}>
         <View className="flex-row items-center justify-between pb-3">
           <Text className="p-1 rounded-lg bg-gray-400 text-white">
             in progress

@@ -47,11 +47,6 @@ export default function Login() {
           className="border-b w-full p-2 rounded-lg font-bold"
           placeholderTextColor="black"
         />
-        <TouchableOpacity onPress={() => navigation.navigate("screenD")}>
-          <Text className="text-gray-400 text-right font-bold text-xs pt-3">
-            Forgot Password
-          </Text>
-        </TouchableOpacity>
       </View>
 
       <View className="w-1/2 justify-center" style={{ flex: 1 }}>
